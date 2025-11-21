@@ -15,31 +15,12 @@
 - [Development Setup](#development-setup)
 - [Contribution Workflow](#contribution-workflow)
 - [Coding Standards](#coding-standards)
-- [Testing Requirements](#testing-requirements)
 - [Documentation](#documentation)
 - [Pull Request Process](#pull-request-process)
 - [Issue Reporting](#issue-reporting)
 - [Feature Requests](#feature-requests)
 
 ## Code of Conduct
-
-### Our Pledge
-
-We are committed to providing a welcoming and inclusive environment for all contributors, regardless of background, experience level, gender identity, nationality, personal appearance, race, religion, or sexual identity and orientation.
-
-### Expected Behavior
-
-- Be respectful and inclusive
-- Welcome newcomers and help them learn
-- Focus on constructive feedback
-- Show empathy towards others
-
-### Unacceptable Behavior
-
-- Harassment, discrimination, or offensive comments
-- Trolling or insulting remarks
-- Public or private harassment
-- Publishing others' private information
 
 ## Getting Started
 
@@ -51,7 +32,7 @@ We are committed to providing a welcoming and inclusive environment for all cont
    ```
 3. **Add the upstream remote**:
    ```bash
-   git remote add upstream https://github.com/your-org/symbiote.git
+   git remote add upstream https://github.com/Symbiote-it/symbiote.git
    ```
 4. **Create a branch** for your work:
    ```bash
@@ -107,7 +88,7 @@ python manage.py runserver
 
 ### 1. Choose What to Work On
 
-- Check [open issues](https://github.com/your-org/symbiote/issues) for tasks
+- Check [open issues](https://github.com/Symbiote-it/symbiote/issues) for tasks
 - Look for issues labeled `good first issue` if you're new
 - Comment on issues you want to work on to avoid duplicate work
 - For large features, discuss in an issue first

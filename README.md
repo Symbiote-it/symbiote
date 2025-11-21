@@ -50,8 +50,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
 
 ## 📊 Roadmap
 
-- [ ] Multi-language support (Java, Go, Rust)
-- [ ] Mobile app testing (iOS/Android)
 - [ ] Visual AI for UI testing
 - [ ] Distributed test execution
 - [ ] Self-healing test suites
@@ -72,7 +70,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact & Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-org/symbiote/issues)
+- **Issues**: [GitHub Issues](https://github.com/Symbiote-it/symbiote/issues)
 - **Email**: viralrbhadeshiya@gmail.com
 
 ---
