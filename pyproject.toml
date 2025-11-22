@@ -1,0 +1,7 @@
+[project]
+name = "symbiote"
+version = "0.1.0"
+description = "The thing living inside your system, trying to break it before anyone else can. - AI Tester of the world"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
