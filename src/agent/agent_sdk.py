@@ -19,7 +19,7 @@ class DockerOllamaClient:
             response = requests.post(
                 f"{self.base_url}/api/generate",
                 json={
-                    'model': model,
+                    'model': model.value,
                     'prompt': prompt,
                     'stream': False,
                     'options': {
