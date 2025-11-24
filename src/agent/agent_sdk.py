@@ -9,13 +9,7 @@ class DockerOllamaClient:
     def __init__(self, host="localhost", port=11434):
         self.base_url = f"http://{host}:{port}"
 
-    def generate(self, description: str, model: Model):
-            prompt = f"""
-            Create comprehensive test instruction for {description}
-
-            Requirement:
-            - Give instruction in YAML format only
-            """
+    def generate(self, prompt: str, model: Model):
             response = requests.post(
                 f"{self.base_url}/api/generate",
                 json={
