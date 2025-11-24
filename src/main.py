@@ -1,7 +1,7 @@
-from src.agent import Model, DockerOllamaClient
+from src.agent import Model, Phi3Client
 
 def main():
-    client = DockerOllamaClient()
+    client = Phi3Client()
 
     prompt = f"""
         Create comprehensive test instruction for Write a test for testing GitHub repository search functionality
