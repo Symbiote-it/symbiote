@@ -44,3 +44,6 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# test data
+test_image/
