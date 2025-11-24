@@ -4,11 +4,11 @@ def main():
     client = DockerOllamaClient()
 
     prompt = f"""
-            Create comprehensive test instruction for Write a test for testing GitHub repository search functionality
+        Create comprehensive test instruction for Write a test for testing GitHub repository search functionality
 
-            Requirement:
-            - Give instruction in YAML format only
-            """
+        Requirement:
+        - Give instruction in YAML format only
+    """
     test_code = client.generate(
         prompt,
         model=Model.PHI3_MINI
