@@ -1,18 +1,18 @@
-from src.agent import Model, DockerOllamaClient
+import uuid
+from pathlib import Path
+from src.agent import Model, Phi3Client, LlavaClient
 
 def main():
-    client = DockerOllamaClient()
+    client = LlavaClient()
 
-    prompt = f"""
+    description = f"""
         Create comprehensive test instruction for Write a test for testing GitHub repository search functionality
-
-        Requirement:
-        - Give instruction in YAML format only
     """
-    test_code = client.generate(
-        prompt,
-        model=Model.PHI3_MINI
-    )
+    # Get the absolute path to the image
+    project_root = Path(__file__).parent.parent.absolute()
+    image_path = str(project_root / "test_image" / "github_1.png")
+    
+    test_code = client.get_action(session_id=uuid.uuid4(), image_path=image_path, description=description)
     print(test_code)
 
 if __name__ == "__main__":

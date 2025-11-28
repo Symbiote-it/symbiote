@@ -36,6 +36,14 @@ env/
 *.swo
 *~
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
 # OS
 .DS_Store
 Thumbs.db
+
+# test data
+test_image/

@@ -12,6 +12,12 @@ services:
     # Optional: set environment variables
     environment:
       - OLLAMA_HOST=0.0.0.0
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+        reservations:
+          memory: 8G
 
 volumes:
   ollama_data:
