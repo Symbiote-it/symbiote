@@ -1,13 +1,25 @@
-.PHONY: help start-ollama stop-ollama restart-ollama pull-model delete-model list-models show-model pull-phi3 pull-llama2 pull-llama3 pull-mistral pull-codegemma pull-deepseek pull-qwen clean-models
+.PHONY: help start-ollama stop-ollama restart-ollama pull-model delete-model list-models show-model pull-phi3 pull-llama2 pull-llama3 pull-mistral pull-codegemma pull-deepseek pull-qwen clean-models start-db stop-db db-init db-reset start-all stop-all
 
 # Default target
 help:
 	@echo "Symbiote - Ollama Model Management"
 	@echo ""
 	@echo "Available commands:"
+	@echo ""
+	@echo "Docker Services:"
+	@echo "  make start-all             - Start all services (Ollama + PostgreSQL)"
+	@echo "  make stop-all              - Stop all services"
 	@echo "  make start-ollama          - Start Ollama Docker container"
 	@echo "  make stop-ollama           - Stop Ollama Docker container"
 	@echo "  make restart-ollama        - Restart Ollama Docker container"
+	@echo "  make start-db              - Start PostgreSQL Docker container"
+	@echo "  make stop-db               - Stop PostgreSQL Docker container"
+	@echo ""
+	@echo "Database:"
+	@echo "  make db-init               - Initialize database tables"
+	@echo "  make db-reset              - Reset database (WARNING: drops all data)"
+	@echo ""
+	@echo "Model Management:"
 	@echo "  make list-models           - List all installed models"
 	@echo "  make pull-model MODEL=name - Pull a specific model (e.g., MODEL=phi3)"
 	@echo "  make delete-model MODEL=name - Delete a specific model"
@@ -24,21 +36,66 @@ help:
 	@echo ""
 	@echo "  make clean-models          - Remove all models (WARNING: destructive)"
 
-# Docker Compose commands
+# Docker Compose commands - All services
+start-all:
+	@echo "Starting all services (Ollama + PostgreSQL)..."
+	docker-compose up -d
+	@echo "Waiting for services to be ready..."
+	@sleep 5
+	@echo "Services running:"
+	@echo "  - Ollama: http://localhost:11434"
+	@echo "  - PostgreSQL: localhost:5432"
+
+stop-all:
+	@echo "Stopping all services..."
+	docker-compose down
+	@echo "All services stopped"
+
+# Ollama commands
 start-ollama:
 	@echo "Starting Ollama container..."
-	cd src/agent && docker-compose up -d
+	docker-compose up -d ollama
 	@echo "Waiting for Ollama to be ready..."
 	@sleep 3
 	@echo "Ollama is running at http://localhost:11434"
 
 stop-ollama:
 	@echo "Stopping Ollama container..."
-	cd src/agent && docker-compose down
+	docker-compose stop ollama
 	@echo "Ollama stopped"
 
 restart-ollama: stop-ollama start-ollama
 	@echo "Ollama restarted"
+
+# Database commands
+start-db:
+	@echo "Starting PostgreSQL container..."
+	docker-compose up -d postgres
+	@echo "Waiting for PostgreSQL to be ready..."
+	@sleep 3
+	@echo "PostgreSQL is running at localhost:5432"
+
+stop-db:
+	@echo "Stopping PostgreSQL container..."
+	docker-compose stop postgres
+	@echo "PostgreSQL stopped"
+
+db-init:
+	@echo "Initializing database tables..."
+	uv run python -c "from src.db import init_db; init_db()"
+	@echo "Database initialized"
+
+db-reset:
+	@echo "WARNING: This will drop all database tables and data!"
+	@read -p "Are you sure? [y/N] " -n 1 -r; \
+	echo; \
+	if [[ $$REPLY =~ ^[Yy]$$ ]]; then \
+		echo "Resetting database..."; \
+		uv run python -c "from src.db import drop_db, init_db; drop_db(); init_db()"; \
+		echo "Database reset complete"; \
+	else \
+		echo "Cancelled."; \
+	fi
 
 # Model management commands
 list-models:

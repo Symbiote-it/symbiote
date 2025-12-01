@@ -9,7 +9,6 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     restart: unless-stopped
-    # Optional: set environment variables
     environment:
       - OLLAMA_HOST=0.0.0.0
     deploy:
@@ -19,5 +18,24 @@ services:
         reservations:
           memory: 8G
 
+  postgres:
+    image: postgres:16-alpine
+    container_name: symbiote_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: symbiote
+      POSTGRES_PASSWORD: symbiote_secret
+      POSTGRES_DB: symbiote
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U symbiote -d symbiote"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   ollama_data:
+  postgres_data:
