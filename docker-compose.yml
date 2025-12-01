@@ -25,7 +25,7 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: symbiote
-      POSTGRES_PASSWORD: symbiote_secret
+      POSTGRES_PASSWORD: symbiote_owner_main
       POSTGRES_DB: symbiote
     volumes:
       - postgres_data:/var/lib/postgresql/data

@@ -1,17 +1,13 @@
 """
 Database module for Symbiote session management.
 
-Provides database models, connection management, and repositories
-for storing chat history, tasks, and agent interactions.
+Provides database models, connection management, and session manager
+for storing chat history and messages.
 """
 from src.db.models import (
     Base,
-    Task, 
     Chat, 
-    Message, 
-    Agent, 
-    ActionLog,
-    TaskStatus,
+    Message,
     MessageRole,
     AgentType
 )
@@ -26,11 +22,8 @@ from src.db.connection import (
     get_database_url
 )
 from src.db.repository import (
-    TaskRepository,
     ChatRepository,
-    MessageRepository,
-    AgentRepository,
-    ActionLogRepository
+    MessageRepository
 )
 from src.db.session_manager import SessionManager, session_manager
 
@@ -38,14 +31,10 @@ from src.db.session_manager import SessionManager, session_manager
 __all__ = [
     # Models
     "Base",
-    "Task",
     "Chat", 
     "Message",
-    "Agent",
-    "ActionLog",
     
     # Enums
-    "TaskStatus",
     "MessageRole",
     "AgentType",
     
@@ -60,14 +49,10 @@ __all__ = [
     "get_database_url",
     
     # Repositories
-    "TaskRepository",
     "ChatRepository",
     "MessageRepository",
-    "AgentRepository",
-    "ActionLogRepository",
     
     # Session Manager
     "SessionManager",
     "session_manager",
 ]
-
