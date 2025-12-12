@@ -16,7 +16,8 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "sqlalchemy>=2.0.0",
     "psycopg2-binary>=2.9.9",
+    "picologging>=0.9.3",
 ]
 
 [project.scripts]
-symbiote = "src.main:main"
+symbiote = "src.cli.main:main"
