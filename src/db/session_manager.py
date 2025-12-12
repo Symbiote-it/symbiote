@@ -70,7 +70,7 @@ class SessionManager:
     def add_message(
         self,
         chat_id: int,
-        role: str,
+        role: MessageRole,
         content: str,
         agent_type: Optional[str] = None
     ) -> int:

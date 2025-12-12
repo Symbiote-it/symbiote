@@ -1,4 +1,5 @@
 from src.utils import get_logger
+from src.db import session_manager, init_db, MessageRole
 
 logger = get_logger(__name__)
 
@@ -6,6 +7,8 @@ class CommandLineInterface:
     def process_request(self, user_request):
         """Main pipeline to process user request: request -> plan -> execute"""
         logger.info(f"Processing: {user_request}")
+        chat_id = session_manager.create_chat()
+        session_manager.add_message(chat_id, MessageRole.USER, user_request)
 
     def interactive_mode(self):
         """Interactive CLI for symbiote"""
@@ -22,6 +25,10 @@ class CommandLineInterface:
 
 def main():
     """Entry point for the symbiote CLI."""
+    # Initialize DB setup
+    init_db()
+
+    # Start interactive CLI shell
     cli = CommandLineInterface()
     cli.interactive_mode()
 
